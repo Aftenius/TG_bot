@@ -13,13 +13,6 @@ import TOKEN
 
 token = TOKEN.TG_API_KEY
 
-new_data = [
-    {"name": "name1", "id": "id1"},
-    {"name": "name2", "id": "id2"}
-]
-
-admin_id = 908849227
-
 
 def read_json(filename):
     try:
@@ -43,16 +36,6 @@ def post_id(new_data):
         else:
             existing_data.append(new_data)
             write_json("output.json", existing_data)
-
-
-# # Чтение существующих данных из файла
-# existing_data = read_json("output.json")
-#
-# # Добавление новых данных
-# existing_data.append(new_data)
-#
-# # Запись обновленных данных обратно в файл
-# write_json("output.json", existing_data)
 
 
 async def set_commands(bot: Bot):
@@ -89,7 +72,7 @@ async def send_all(message: Message, bot: Bot):
         if message.from_user.id == 908849227:
             text = message.text[9:]
             existing_data = read_json("output.json")
-            id_values =id_values = set(sublist[0]["id"] for sublist in existing_data)
+            id_values = id_values = set(sublist[0]["id"] for sublist in existing_data)
             for i in id_values:
                 try:
                     await bot.send_message(i, text)
